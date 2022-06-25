@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+section {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  color: white;
+  background: rgb(40, 40, 40);
+}
+
+nav {
+  min-height: 10vh;
+  color: white;
+  background: rgb(40, 40, 40);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.75s ease-out;
+  transition: all 0.75s ease-out;
+  /* always add transition on the element, not on the class */
+}
+
+.nav-slide {
+  transform: translateY(-100%);
+  /* opacity: 0; */
+}
+
+p {
+  opacity: 1;
+  transition: opacity 0.5s ease-out 0.75s;
+}
+
+.fade {
+  opacity: 0;
+}

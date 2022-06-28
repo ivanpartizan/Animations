@@ -12,3 +12,9 @@ body {
   font-family: "Poppins", sans-serif;
   background: linear-gradient(90deg, #6190e8, #a7bfe8);
 }
+
+form {
+  min-height: 40vh;
+  width: 40vw;
+  background: white;
+}

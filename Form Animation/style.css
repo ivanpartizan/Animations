@@ -48,6 +48,9 @@ form {
   width: 100%;
   height: 100%;
   border: none;
+  outline: none;
+  color: #777474;
+  font-size: 0.7rem;
 }
 
 .placeholder {
@@ -57,12 +60,15 @@ form {
   padding: 0.3rem 0rem;
   font-size: 0.6rem;
   opacity: 0.6;
+  transform-origin: left;
 }
 
 .line-svg {
   position: absolute;
   left: 0;
   bottom: 0;
+  overflow: visible;
+  opacity: 0.8;
 }
 
 .promo-container {

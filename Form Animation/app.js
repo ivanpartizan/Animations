@@ -109,8 +109,71 @@ const tl2 = gsap.timeline({
 const tickMarkPath = document.querySelector(".tick-mark path");
 const pathLength = tickMarkPath.getTotalLength();
 
+gsap.set(tickMarkPath, {
+  strokeDashoffset: pathLength,
+  strokeDasharray: pathLength,
+});
+
 checkbox.addEventListener("click", () => {
   if (checkbox.checked) {
     tl2.to(".checkbox-fill", { top: "0%" });
+    tl2.fromTo(
+      tickMarkPath,
+      { strokeDashoffset: pathLength },
+      { strokeDashoffset: 0 },
+      "<50%"
+    );
+    tl2.to(".checkbox-label", { color: "#6391e8" }, "<");
+  } else {
+    tl2.to(".checkbox-fill", { top: "100%" });
+    tl2.fromTo(
+      tickMarkPath,
+      { strokeDashoffset: 0 },
+      { strokeDashoffset: pathLength },
+      "<50%"
+    );
+    tl2.to(".checkbox-label", { color: "#c5c5c5" }, "<");
   }
+});
+
+// Character animation
+gsap.set("#eye", { transformOrigin: "center" });
+gsap.fromTo(
+  "#eye",
+  { scaleY: 1 },
+  {
+    scaleY: 0.3,
+    repeat: -1,
+    yoyo: true,
+    repeatDelay: 0.5,
+    ease: "Power2.easeOut",
+  }
+);
+gsap.fromTo(
+  "#eyebrow",
+  { y: 0 },
+  { y: -1, repeat: -1, yoyo: true, repeatDelay: 0.5, ease: "Power2.easeOut" }
+);
+
+// Submit button
+const button = document.querySelector("button");
+const tl3 = gsap.timeline({
+  defaults: { duration: 0.75, ease: "Power2.easeOut" },
+});
+
+button.addEventListener("click", (e) => {
+  e.preventDefault();
+  tl3.to(".contact-right, .contact-left", {
+    y: 30,
+    opacity: 0,
+    pointerEvents: "none",
+  });
+  tl3.to("form", { scale: 0.8 }, "<");
+  tl3.fromTo(".submitted", { opacity: 0, y: 30 }, { opacity: 1, y: 0 });
+  gsap.set("#hand", { transformOrigin: "left" });
+  gsap.fromTo(
+    "#hand",
+    { rotation: 0, y: 0 },
+    { rotation: -10, y: 2, ease: "elastic(3, 0.3)", duration: 2, delay: 1 }
+  );
 });

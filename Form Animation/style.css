@@ -21,6 +21,7 @@ form {
   border-radius: 2rem;
   padding: 3rem 5rem;
   display: flex;
+  position: relative;
 }
 
 .title {
@@ -79,6 +80,7 @@ form {
 .checkbox {
   cursor: pointer;
   opacity: 0;
+  z-index: 3;
 }
 
 .checkbox-label {
@@ -132,4 +134,39 @@ button {
   cursor: pointer;
   margin-top: 1rem;
   align-self: flex-start;
+}
+
+#character {
+  position: absolute;
+  transform: scale(0.6) translate(0%, 30%);
+  bottom: 0;
+  left: 0;
+  transform-origin: bottom;
+}
+
+.submitted {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #777474;
+  font-size: 1rem;
+  pointer-events: none;
+  text-align: center;
+  opacity: 0;
+}
+
+@media screen and (max-width: 812px) {
+  form {
+    width: 90vw;
+    min-height: 80vh;
+    flex-direction: column;
+    padding: 8rem 3rem;
+  }
+  #character {
+    transform: scale(0.4) translate(0%, 30%);
+  }
+  .line-svg {
+    width: 100%;
+  }
 }

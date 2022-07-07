@@ -40,8 +40,67 @@ nav img {
 }
 
 .image-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80vh;
+  z-index: 2;
+  flex: 1;
 }
 
 .image-container img {
-  width: 90%;
+  width: 80%;
+}
+
+.showcase-text {
+  color: white;
+  flex: 1;
+  padding-bottom: 10rem;
+}
+
+.showcase-title {
+  font-size: 2rem;
+}
+
+.showcase-subtitle {
+  font-size: 1rem;
+  padding: 3rem 0rem;
+  font-weight: 400;
+}
+
+.showcase-button {
+  padding: 0.5rem 2rem;
+  border: none;
+  color: black;
+  font-weight: 500;
+  font-size: 0.8rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.showcase-arrow {
+  position: absolute;
+  right: 15%;
+  bottom: 10%;
+  transform: scale(0.6);
+}
+
+.circle {
+  position: absolute;
+}
+
+.circle-1 {
+  left: -3%;
+  bottom: -3%;
+  transform: scale(2);
+}
+
+.circle-2 {
+  left: 35%;
+  bottom: 10%;
+}
+
+.circle-3 {
+  left: 20%;
+  top: 15%;
+  transform: scale(1.5);
 }

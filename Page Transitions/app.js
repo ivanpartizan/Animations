@@ -5,19 +5,19 @@ const tlEnter = gsap.timeline({
   defaults: { duration: 0.75, ease: "Power2.easeOut" },
 });
 
+//Make the functions for the leave and enter animations
 const leaveAnimation = (current, done) => {
   const product = current.querySelector(".image-container");
   const text = current.querySelector(".showcase-text");
   const circles = current.querySelectorAll(".circle");
   const arrow = current.querySelector(".showcase-arrow");
   return (
-    tlLeave.fromTo(arrow, { opacity: 1, y: 0 }, { opacity: 0, y: 50 }),
     tlLeave.fromTo(
-      product,
-      { y: 0, opacity: 1 },
-      { y: 100, opacity: 0, onComplete: done },
-      "<"
+      arrow,
+      { opacity: 1, y: 0 },
+      { opacity: 0, y: 50, onComplete: done }
     ),
+    tlLeave.fromTo(product, { y: 0, opacity: 1 }, { y: 100, opacity: 0 }, "<"),
     tlLeave.fromTo(text, { y: 0, opacity: 1 }, { opacity: 0, y: 100 }, "<"),
     tlLeave.fromTo(
       circles,
@@ -40,14 +40,13 @@ const enterAnimation = (current, done, gradient) => {
   const circles = current.querySelectorAll(".circle");
   const arrow = current.querySelector(".showcase-arrow");
   return (
-    tlEnter.fromTo(arrow, { opacity: 0, y: 50 }, { opacity: 1, y: 0 }),
-    tlEnter.to("body", { background: gradient }, "<"),
     tlEnter.fromTo(
-      product,
-      { y: -100, opacity: 0 },
-      { y: 0, opacity: 1, onComplete: done },
-      "<"
+      arrow,
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, onComplete: done }
     ),
+    tlEnter.to("body", { background: gradient }, "<"),
+    tlEnter.fromTo(product, { y: -100, opacity: 0 }, { y: 0, opacity: 1 }, "<"),
     tlEnter.fromTo(text, { y: 100, opacity: 0 }, { opacity: 1, y: 0 }, "<"),
     tlEnter.fromTo(
       circles,
@@ -64,9 +63,11 @@ const enterAnimation = (current, done, gradient) => {
   );
 };
 
+//Run animations
 barba.init({
   preventRunning: true,
   transitions: [
+    //showcase transitions
     {
       name: "default",
       once(data) {
@@ -88,11 +89,12 @@ barba.init({
         enterAnimation(next, done, gradient);
       },
     },
+    //product page animation
     {
       name: "product-transition",
       sync: true,
-      from: { namespace: ["handbag"] },
-      to: { namespace: ["product"] },
+      from: { namespace: ["handbag", "product"] },
+      to: { namespace: ["product", "handbag"] },
       enter(data) {
         const done = this.async();
         let next = data.next.container;
@@ -115,11 +117,10 @@ function productEnterAnimation(next, done) {
     { opacity: 1, y: 0, stagger: 0.1, onComplete: done }
   );
 }
-
 function productLeaveAnimation(current, done) {
   tlLeave.fromTo(current, { y: "0%" }, { y: "100%", onComplete: done });
 }
-
+//changing gradient on showcase
 function getGradient(name) {
   switch (name) {
     case "handbag":

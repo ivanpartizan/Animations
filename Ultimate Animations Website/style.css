@@ -171,6 +171,7 @@ a {
 }
 
 .purchase-left {
+  background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -261,6 +262,10 @@ a {
 .left-info span {
   font-size: 1.5rem;
   color: rgb(193, 193, 193);
+}
+
+.blue {
+  z-index: 1;
 }
 
 /* Final page */
